@@ -21,18 +21,18 @@ if [ ! -d '/var/lib/mysql/mysql' -a "${1%_safe}" = 'mysqld' ]; then
 		DROP DATABASE IF EXISTS test ;
 	EOSQL
 	
-	if [ "$MYSQL_DATABASE" ]; then
-		echo "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE ;" >> "$TEMP_FILE"
-	fi
-	
-	if [ "$MYSQL_USER" -a "$MYSQL_PASSWORD" ]; then
-		echo "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD' ;" >> "$TEMP_FILE"
-		
-		if [ "$MYSQL_DATABASE" ]; then
-			echo "GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%' ;" >> "$TEMP_FILE"
-		fi
-	fi
-	
+#	if [ "$MYSQL_DATABASE" ]; then
+#		echo "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE ;" >> "$TEMP_FILE"
+#	fi
+#	
+#	if [ "$MYSQL_USER" -a "$MYSQL_PASSWORD" ]; then
+#		echo "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD' ;" >> "$TEMP_FILE"
+#		
+#		if [ "$MYSQL_DATABASE" ]; then
+#			echo "GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%' ;" >> "$TEMP_FILE"
+#		fi
+#	fi
+#	
 	echo 'FLUSH PRIVILEGES ;' >> "$TEMP_FILE"
 	
 	set -- "$@" --init-file="$TEMP_FILE"

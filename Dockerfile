@@ -36,11 +36,23 @@ RUN apt-get update && apt-get install -y curl --no-install-recommends && rm -rf 
 	&& apt-get purge -y --auto-remove binutils
 ENV PATH $PATH:/usr/local/mysql/bin:/usr/local/mysql/scripts
 
+# Directorio al que conmuto...
 WORKDIR /usr/local/mysql
-#VOLUME /var/lib/mysql
 
-COPY docker-entrypoint.sh /entrypoint.sh
+# Este volumen deben pasármelo vía -v
+# VOLUME /var/lib/mysql
+
+# Ejecutable a arrancar siempre
+#
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Punto de entrada al contendor
 ENTRYPOINT ["/entrypoint.sh"]
 
+# Soy MySQL, tendré que escuchar no? :)
 EXPOSE 3306
+
+# Comando a ejecutar por defecto (si no se especifica)
 CMD ["mysqld", "--datadir=/var/lib/mysql", "--user=mysql"]
+
