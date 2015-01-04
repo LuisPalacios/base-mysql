@@ -28,7 +28,8 @@ fi
 chown -R mysql:mysql /var/lib/mysql
 
 # Creo la estructura MySSQL si no existe... 
-if [ ! -d '/var/lib/mysql/mysql' -a "${1%_safe}" = 'mysqld' ]; then
+#if [ ! -d '/var/lib/mysql/mysql' -a "${1%_safe}" = 'mysqld' ]; then
+if [ ! -d '/var/lib/mysql/mysql' ]; then
 
 	# Necesito la contraseña de root, si no la tengo aborto...
 	if [ -z "${MYSQL_ROOT_PASSWORD}" ]; then
