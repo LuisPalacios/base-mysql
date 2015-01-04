@@ -40,3 +40,9 @@ Directorio persistente para la estructura MySQL, debe apuntar a un directorio de
 
 Contraseña del usuario "root" que se asignará a MySQL si descubre el directorio vacío y necesita crear la estructura inicial. 
 
+
+### Troubleshooting
+
+A continuación un ejemplo sobre cómo ejecutar manualmente el contenedor, útil para hacer troubleshooting. 
+
+    docker run --rm -t -i -p 3306:3306 -e MYSQL_ROOT_PASSWORD="mipase" -v /Apps/data/pruebas:/var/lib/mysql luispa/base-mysql /bin/bash
