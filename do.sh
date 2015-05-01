@@ -4,6 +4,7 @@
 #
 # Activar el debug de este script:
 # set -eux
+#
 
 ##################################################################
 #
@@ -69,7 +70,7 @@ if [ ! -d '/var/lib/mysql/mysql' ]; then
 		FLUSH PRIVILEGES ;
 	EOSQL
 
-	set -- /usr/local/mysql/bin/mysqld --datadir=/var/lib/mysql --user=mysql --init-file="$TEMP_FILE"
+	set -- /usr/sbin/mysqld --datadir=/var/lib/mysql --user=mysql --init-file="$TEMP_FILE"
 fi
 
 ##################################################################
@@ -119,7 +120,7 @@ serverurl=unix:///var/run/supervisor.sock		; use a unix:// URL for a unix socket
 # Para enviar logs
 [program:mysql]
 process_name = mysql
-command=/usr/local/mysql/bin/mysqld --datadir=/var/lib/mysql --user=mysql
+command=/usr/sbin/mysqld --datadir=/var/lib/mysql --user=mysql
 startsecs = 0
 autorestart = true
 
