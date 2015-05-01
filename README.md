@@ -36,6 +36,14 @@ Directorio persistente para la estructura MySQL, debe apuntar a un directorio de
    - "/Directorio/Persistente/En/Tu/Host:/var/lib/mysql"  
 
 
+Directorio persistente para configurar el Timezone. Crear el directorio /Apps/data/tz y dentro de él crear el fichero timezone. Luego montarlo con -v o con fig.yml
+
+    Montar:
+       "/Apps/data/tz:/config/tz"  
+    Preparar: 
+       $ echo "Europe/Madrid" > /config/tz/timezone
+
+
 ### Variable: MYSQL_ROOT_PASSWORD
 
 Contraseña del usuario "root" que se asignará a MySQL si descubre el directorio vacío y necesita crear la estructura inicial. 
